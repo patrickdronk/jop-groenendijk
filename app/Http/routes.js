@@ -22,3 +22,5 @@ Route.on('/').render('index');
 Route.post('/login', 'UsersController.login');
 
 Route.post('/register', 'UsersController.register');
+
+Route.get('/posts', 'PostsController.index').middleware('auth');

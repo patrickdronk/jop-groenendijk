@@ -22,9 +22,16 @@
 
         this.login = function () {
           authservice.login(vm.user).then(function (result) {
-            console.log(result)
+            if(result) {
+              $state.go('home.timeline');
+            } else {
+              toasty.error({
+                title: 'Login failed!',
+                msg: 'Check your credentials'
+              });
+            }
           });
-            // $state.go('home.timeline');
+
         };
 
       this.register = function () {

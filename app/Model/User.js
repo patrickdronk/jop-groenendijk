@@ -13,15 +13,27 @@ class User extends Lucid {
      * database.
      */
     this.addHook('beforeCreate', function * (next) {
-      this.password = yield Hash.make(this.password)
+      this.password = yield Hash.make(this.password);
       yield next
     })
   }
 
-  apiTokens () {
-    return this.hasMany('App/Model/Token')
+  posts () {
+    return this.hasMany('App/Model/Post');
   }
 
+  /**
+   * Api token
+   * @returns {Object}
+   */
+  apiTokens () {
+    return this.hasMany('App/Model/Token');
+  }
+
+  /**
+   * Validation rules
+   * @returns {{fullName: string, email: string, password: string}}
+   */
   static get rules () {
     return {
       fullName: 'required',

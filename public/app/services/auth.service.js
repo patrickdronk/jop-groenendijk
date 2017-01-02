@@ -2,9 +2,9 @@ angular
   .module('app')
   .factory('authservice', authservice);
 
-authservice.$inject = ['$http'];
+authservice.$inject = ['$http', '$localStorage'];
 
-function authservice($http) {
+function authservice($http, $localStorage) {
   return {
     login: login,
     register: register
@@ -17,11 +17,13 @@ function authservice($http) {
 
     function loginSucces(response) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
-      return response.data;
+      $localStorage.token = response.data.token;
+      return true;
     }
 
     function loginFailed(error) {
-      console.log('XHR Failed for login.' + error.data);
+      console.log(error);
+      return false;
     }
   }
 

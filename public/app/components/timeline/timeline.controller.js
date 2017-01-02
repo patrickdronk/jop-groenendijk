@@ -4,12 +4,12 @@ angular
     .module('timeline')
     .controller('TimelineController', TimelineController);
 
-TimelineController.$inject = ['$uibModal'];
+TimelineController.$inject = ['$uibModal', '$http'];
 
-function TimelineController($uibModal) {
+function TimelineController($uibModal, $http) {
 
     var vm = this;
-    vm.messages = [];
+    vm.posts = [];
 
     function activate() {
         vm.getMessages();
@@ -20,9 +20,9 @@ function TimelineController($uibModal) {
 
     vm.getMessages = function()
     {
-        // Data.get("/messages").then(function(result) {
-        //     vm.messages = result.data;
-        // })
+        $http.get('/posts').then( function(result) {
+          vm.posts = result.data;
+        })
     };
 
     vm.createMessage = function() {
@@ -34,7 +34,7 @@ function TimelineController($uibModal) {
         });
 
         modalInstance.result.then(function (newMessage) {
-            vm.messages.push(newMessage);
+            vm.posts.push(newMessage);
         });
     };
 

@@ -13,7 +13,8 @@ class UsersController {
     try {
       token = yield request.auth.attempt(email, password)
     } catch (e) {
-      response.unauthorized({error: e.message})
+      response.unauthorized({error: e.message});
+      return;
     }
 
     response.json({ 'token': token });

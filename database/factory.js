@@ -11,7 +11,7 @@
 |
 */
 
-const Factory = use('Factory')
+const Factory = use('Factory');
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +27,12 @@ Factory.blueprint('App/Model/User', (fake) => {
     email: fake.email(),
     password: fake.password()
   }
-})
+});
+
+Factory.blueprint('App/Model/Post', (fake) => {
+  return {
+    title: fake.word(),
+    content: fake.paragraph(),
+    attachment: fake.avatar()
+  }
+});
