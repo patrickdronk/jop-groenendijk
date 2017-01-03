@@ -18,7 +18,6 @@
 
         function activate() {
           vm.show = true;
-            // $('#body').addClass('login-background');
         }
 
         this.login = function () {

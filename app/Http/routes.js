@@ -25,3 +25,5 @@ Route.post('/register', 'UsersController.register');
 
 Route.get('/posts', 'PostsController.index').middleware('auth');
 Route.post('/posts', 'PostsController.store').middleware('auth');
+
+Route.put('/attachment', 'AttachmentController.upload'); //.middleware('auth')

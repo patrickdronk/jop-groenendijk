@@ -1,24 +1,38 @@
+<style>
+  .drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    height: 85px;
+    text-align: center;
+    padding-top: 25px;
+  }
+</style>
 <form class="form-horizontal">
-    <div class="modal-header">
-        <h3 class="modal-title" id="modal-title">Plaats een nieuw bericht!</h3>
+  <div class="modal-header">
+    <h3 class="modal-title" id="modal-title">Plaats een nieuw bericht!</h3>
+  </div>
+  <div class="modal-body" id="modal-body">
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Titel</label>
+      <div class="col-lg-10">
+        <input placeholder="Title" class="form-control" ng-model="vm.post.title">
+      </div>
     </div>
-    <div class="modal-body" id="modal-body">
-        <div class="form-group">
-            <label class="col-lg-2 control-label">Titel</label>
-            <div class="col-lg-10">
-                <input placeholder="Title" class="form-control" ng-model="vm.post.title">
-            </div>
-        </div>
 
-        <div class="form-group">
-            <label class="col-lg-2 control-label">Uw bericht</label>
-            <div class="col-lg-10">
-            <textarea placeholder="Your message" class="form-control" ng-model="vm.post.content"></textarea>
-            </div>
-        </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Uw bericht</label>
+      <div class="col-lg-10">
+        <textarea placeholder="Your message" class="form-control" ng-model="vm.post.content"></textarea>
+      </div>
     </div>
-    <div class="modal-footer">
-        <button class="btn btn-blue" type="button" ng-click="vm.ok()">OK</button>
-        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
-    </div>
+    <div ngf-drop ngf-select ng-model="files" class="drop-box col-sm-offset-2 col-md-offset-0"
+         ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+         accept="image/*"
+         ngf-pattern="'image/*'">Drop images here or click to upload</div>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div></row>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-blue" type="button" ng-click="vm.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+  </div>
 </form>
