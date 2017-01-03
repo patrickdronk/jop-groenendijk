@@ -17,6 +17,7 @@
         ////////////////
 
         function activate() {
+          vm.show = true;
             // $('#body').addClass('login-background');
         }
 
@@ -41,7 +42,7 @@
               title: 'Registration succesfull!',
               msg: 'You can now login :)'
             });
-            vm.login = true;
+            vm.show = true;
           }
         });
 

@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router','ui.bootstrap','auth', 'template', 'timeline', 'angular-toasty','ngStorage']);
+var app = angular.module('app', ['ui.router','ui.bootstrap','auth', 'template', 'timeline', 'angular-toasty','ngStorage', 'angularMoment']);
 
 app.run(function($state, $http, $localStorage){
     $state.go('login');

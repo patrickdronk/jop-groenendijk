@@ -20,6 +20,7 @@
     "bootstrap-material-design": "^0.5.9",
     "angular-animate": "^1.5.5",
     "angular-toasty": "^1.0.6",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "angular-moment": "^1.0.1"
   }
 }

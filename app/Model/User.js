@@ -1,12 +1,12 @@
 'use strict'
 
-const Lucid = use('Lucid')
-const Hash = use('Hash')
+const Lucid = use('Lucid');
+const Hash = use('Hash');
 
 class User extends Lucid {
 
   static boot () {
-    super.boot()
+    super.boot();
 
     /**
      * Hashing password before storing to the
@@ -18,6 +18,10 @@ class User extends Lucid {
     })
   }
 
+  /**
+   * return the posts of this user
+   * @returns {Object}
+   */
   posts () {
     return this.hasMany('App/Model/Post');
   }
@@ -43,4 +47,4 @@ class User extends Lucid {
   }
 }
 
-module.exports = User
+module.exports = User;

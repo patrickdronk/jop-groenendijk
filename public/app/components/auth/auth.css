@@ -9,7 +9,7 @@ body, html {
 }
 
 .login-background {
-    background-image: url("../../../images/deadpool.jpg");
+    background-image: url("/assets/Jop.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
