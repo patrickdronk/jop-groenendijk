@@ -6,6 +6,18 @@
     text-align: center;
     padding-top: 25px;
   }
+
+  .feed-photo {
+    max-height: 180px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .m-l-150 {
+    margin-left: 150px;
+  }
 </style>
 <form class="form-horizontal">
   <div class="modal-header">
@@ -25,10 +37,15 @@
         <textarea placeholder="Your message" class="form-control" ng-model="vm.post.content"></textarea>
       </div>
     </div>
-    <div ngf-drop ngf-select ng-model="files" class="drop-box col-sm-offset-2 col-md-offset-0"
-         ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+
+    <row class="m-l-150">
+      <img ng-repeat="attachment in vm.post.attachments" class="feed-photo"
+           ng-src="attachment/{{ attachment}}">
+    </row>
+    <div ngf-drop="vm.upload($files)" ngf-select="vm.upload($files)" ng-model="files" class="drop-box col-sm-offset-2 col-md-offset-0"
+         ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
          accept="image/*"
-         ngf-pattern="'image/*'">Drop images here or click to upload</div>
+         ngf-pattern="'image/*'">Drop image here or click to upload</div>
     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div></row>
   </div>
   <div class="modal-footer">

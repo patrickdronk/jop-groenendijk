@@ -11,6 +11,14 @@ class Post extends Lucid {
   user () {
     return this.belongsTo('App/Model/User')
   }
+
+  /**
+   * return the posts of this user
+   * @returns {Object}
+   */
+  attachments () {
+    return this.hasMany('App/Model/Attachment');
+  }
 }
 
 module.exports = Post;

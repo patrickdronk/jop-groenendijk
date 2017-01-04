@@ -4,19 +4,22 @@ angular
   .module('timeline')
   .controller('CreateMessageModalController', CreateMessageModalController);
 
-CreateMessageModalController.$inject = ['$uibModalInstance','$http', 'toasty'];
+CreateMessageModalController.$inject = ['$uibModalInstance','$http', 'toasty', 'Upload'];
 
-function CreateMessageModalController($uibModalInstance, $http, toasty) {
+function CreateMessageModalController($uibModalInstance, $http, toasty, Upload) {
 
   var vm = this;
+  vm.post = {};
+  vm.post.attachments = [];
+
   vm.ok = function () {
     $http.post("/posts", vm.post).then(function(result){
-      console.log(result);
       if(result.status == 200) {
         toasty.success({
           title: "Placed :)",
           msg: "Your post is succesfully placed on the timeline!"
         });
+        console.log(result.data);
         $uibModalInstance.close(result.data);
       }
     });
@@ -27,4 +30,19 @@ function CreateMessageModalController($uibModalInstance, $http, toasty) {
     $uibModalInstance.dismiss('cancel');
   };
 
+  vm.upload = function (file) {
+    Upload.upload({
+      url: 'attachment',
+      data: {'files': file}
+    }).then(function (resp) {
+      console.log(resp);
+      vm.post.attachments.push(resp.data);
+      toasty.success({
+        title: "Uploaded",
+        msg: "Your file has been uploaded succesfully, you will see the file after you finish your post"
+      });
+    }, function (resp) {
+      console.log('Error status: ' + resp.status);
+    });
+  }
 }
