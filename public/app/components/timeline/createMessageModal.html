@@ -21,18 +21,18 @@
 </style>
 <form class="form-horizontal">
   <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Plaats een nieuw bericht!</h3>
+    <h3 class="modal-title" id="modal-title">Create a new post!</h3>
   </div>
   <div class="modal-body" id="modal-body">
     <div class="form-group">
-      <label class="col-lg-2 control-label">Titel</label>
+      <label class="col-lg-2 control-label">Title</label>
       <div class="col-lg-10">
         <input placeholder="Title" class="form-control" ng-model="vm.post.title">
       </div>
     </div>
 
     <div class="form-group">
-      <label class="col-lg-2 control-label">Uw bericht</label>
+      <label class="col-lg-2 control-label">Your message</label>
       <div class="col-lg-10">
         <textarea placeholder="Your message" class="form-control" ng-model="vm.post.content"></textarea>
       </div>
@@ -46,7 +46,7 @@
          ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
          accept="image/*"
          ngf-pattern="'image/*'">Drop image here or click to upload</div>
-    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div></row>
+    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
   </div>
   <div class="modal-footer">
     <button class="btn btn-blue" type="button" ng-click="vm.ok()">OK</button>
