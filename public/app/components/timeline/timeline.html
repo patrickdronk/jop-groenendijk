@@ -24,7 +24,7 @@
         <h3 ng-if="vm.posts.length <= 0" class="text-center">Start your timeline with Jop by posting a new message :)</h3>
         <ul ng-if="vm.posts.length > 0" class="timeline">
           <li ng-repeat="post in vm.posts | reverse" ng-class="$even ? 'timeline-panel' : 'timeline-inverted'">
-            <div class="timeline-badge"><i class=""></i></div>
+            <div class="timeline-badge" uib-tooltip="{{ post.user.fullName }}" style="background-color: {{vm.stringToColour('CVDW')}}"><p>{{ vm.fullNameToAbbreviation(post.user.fullName) }}</p></div>
             <div class="timeline-panel">
               <div class="timeline-heading">
                 <h4 class="timeline-title">{{ post.title }}</h4>

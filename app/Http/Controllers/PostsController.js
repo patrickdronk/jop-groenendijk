@@ -11,10 +11,19 @@ class PostsController {
     const user = yield request.auth.getUser();
 
     // const privatePosts = yield user.posts().with('attachments').where('public', '0').fetch();
-    const publicPosts = yield Post.query().with('attachments').where('public', '1').fetch();
+    const publicPosts = yield Post
+      .query()
+      .with('attachments', 'user')
+      .where('public', '1')
+      .fetch();
 
     //the private posts
-    const privatePosts = yield Post.query().with('attachments').where('user_id', user.id).where('public', '0').fetch();
+    const privatePosts = yield Post
+      .query()
+      .with('attachments', 'user')
+      .where('user_id', user.id)
+      .where('public', '0')
+      .fetch();
 
     let allPosts = this.createReturnArray(publicPosts, privatePosts);
 
@@ -71,7 +80,7 @@ class PostsController {
     const returnPost = yield Post
       .query()
       .where('id', post.id)
-      .with('attachments')
+      .with('attachments', 'user')
       .first();
     // const returnPost = yield Post.query().where('id', post.id).fetch();
 
