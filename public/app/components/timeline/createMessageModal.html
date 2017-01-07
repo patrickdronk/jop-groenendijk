@@ -36,7 +36,14 @@
       <div class="col-lg-10">
         <textarea placeholder="Your message" class="form-control" ng-model="vm.post.content"></textarea>
       </div>
+      <div class="checkbox col-lg-10 col-lg-offset-2">
+        <label>
+          <input type="checkbox" data-ng-model="vm.post.public" uib-tooltip="If you make this public, everyone can see this"> Public
+        </label>
+      </div>
     </div>
+
+
 
     <row class="m-l-150">
       <img ng-repeat="attachment in vm.post.attachments" class="feed-photo"

@@ -7,9 +7,45 @@ const Attachment = use ('App/Model/Attachment');
 class PostsController {
 
   * index(request, response) {
+    //the public posts
     const user = yield request.auth.getUser();
-    const posts = yield user.posts().with('attachments').fetch();
-    yield response.json(posts);
+
+    // const privatePosts = yield user.posts().with('attachments').where('public', '0').fetch();
+    const publicPosts = yield Post.query().with('attachments').where('public', '1').fetch();
+
+    //the private posts
+    const privatePosts = yield Post.query().with('attachments').where('user_id', user.id).where('public', '0').fetch();
+
+    let allPosts = this.createReturnArray(publicPosts, privatePosts);
+
+    yield response.json(allPosts);
+  }
+
+  /**
+   * weird not good method but don't know how to solve it better :')
+   * @param publicPosts
+   * @param privatePosts
+   * @returns {Array}
+   */
+  createReturnArray(publicPosts, privatePosts) {
+    let newPublicPosts = publicPosts.toJSON();
+    let newPrivatePosts = privatePosts.toJSON();
+
+    let allPosts = [];
+    for (let i = 0; i < newPublicPosts.length; i++) {
+      allPosts.push(newPublicPosts[i]);
+    }
+
+    for (let i = 0; i < newPrivatePosts.length; i++) {
+      allPosts.push(newPrivatePosts[i]);
+    }
+
+    allPosts.sort(function(a,b){
+      // Turn your strings into dates, and then subtract them
+      // to get a value that is either negative, positive, or zero.
+      return new Date(a.created_at) - new Date(b.created_at);
+    });
+    return allPosts;
   }
 
   * store (request, response) {
@@ -18,6 +54,7 @@ class PostsController {
     const post = new Post();
     post.title = request.input('title');
     post.content = request.input('content');
+    post.public = request.input('public') === null ? 0 : 1;
     let attachments = request.input('attachments');
 
     let newAttachments = [];
@@ -31,7 +68,6 @@ class PostsController {
 
     yield post.attachments().saveMany(newAttachments);
 
-    console.log(post.id);
     const returnPost = yield Post
       .query()
       .where('id', post.id)
