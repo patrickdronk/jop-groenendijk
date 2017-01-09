@@ -11,10 +11,6 @@ function CreateMessageModalController($uibModalInstance, $http, toasty, Upload, 
   var vm = this;
   vm.post = {};
   vm.post.attachments = [];
-  
-  $scope.$watch('vm.files', function () {
-        vm.upload(vm.files);
-    });
 
   vm.ok = function () {
     $http.post("/posts", vm.post).then(function(result){
