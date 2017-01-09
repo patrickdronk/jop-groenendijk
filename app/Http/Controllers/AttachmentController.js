@@ -22,8 +22,8 @@ class AttachmentController {
    */
   * upload(request, response) {
 
-    const attachment = request.file('files[0]', {
-      maxSize: '5mb',
+    const attachment = request.file('files', {
+      maxSize: '10mb',
       allowedExtensions: ['jpg', 'png', 'jpeg']
     });
 
