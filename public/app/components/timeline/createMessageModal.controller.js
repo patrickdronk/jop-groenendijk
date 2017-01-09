@@ -4,13 +4,17 @@ angular
   .module('timeline')
   .controller('CreateMessageModalController', CreateMessageModalController);
 
-CreateMessageModalController.$inject = ['$uibModalInstance','$http', 'toasty', 'Upload'];
+CreateMessageModalController.$inject = ['$uibModalInstance','$http', 'toasty', 'Upload', '$scope'];
 
-function CreateMessageModalController($uibModalInstance, $http, toasty, Upload) {
+function CreateMessageModalController($uibModalInstance, $http, toasty, Upload, $scope) {
 
   var vm = this;
   vm.post = {};
   vm.post.attachments = [];
+  
+  $scope.$watch('files', function () {
+        vm.upload(vm.files);
+    });
 
   vm.ok = function () {
     $http.post("/posts", vm.post).then(function(result){
