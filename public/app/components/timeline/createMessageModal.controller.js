@@ -12,7 +12,7 @@ function CreateMessageModalController($uibModalInstance, $http, toasty, Upload, 
   vm.post = {};
   vm.post.attachments = [];
   
-  $scope.$watch('files', function () {
+  $scope.$watch('vm.files', function () {
         vm.upload(vm.files);
     });
 
