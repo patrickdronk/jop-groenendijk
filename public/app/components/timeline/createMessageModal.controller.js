@@ -35,7 +35,6 @@ function CreateMessageModalController($uibModalInstance, $http, toasty, Upload, 
   };
 
   vm.upload = function (files) {
-    alert(files);
     Upload.upload({
       url: 'attachment',
       data: {'files': files}
@@ -47,8 +46,6 @@ function CreateMessageModalController($uibModalInstance, $http, toasty, Upload, 
         msg: "Your file has been uploaded succesfully, you will see the file after you finish your post"
       });
     }, function (resp) {
-      alert(resp);
-      alert(resp.status);
       console.log('Error status: ' + resp.status);
     });
   }
