@@ -30,7 +30,7 @@ class AttachmentController {
     const fileName = uuid.v4();
     yield attachment.move(Helpers.storagePath(), fileName + '.' + attachment.extension());
 
-    if (attachment.moved()) {
+    if (!attachment.moved()) {
       response.badRequest(attachment.errors());
       return;
     }
