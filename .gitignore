@@ -3,3 +3,6 @@ storage
 !.gitkeep
 .env
 npm-debug.log
+.idea/jop-groenendijk.iml
+.idea/modules.xml
+.idea/vcs.xml
