@@ -30,10 +30,10 @@ function CreateMessageModalController($uibModalInstance, $http, toasty, Upload, 
     $uibModalInstance.dismiss('cancel');
   };
 
-  vm.upload = function () {
+  vm.upload = function (file) {
     Upload.upload({
       url: 'attachment',
-      data: {'files': vm.files}
+      data: {'files': file}
     }).then(function (resp) {
       console.log(resp);
       vm.post.attachments.push(resp.data);
