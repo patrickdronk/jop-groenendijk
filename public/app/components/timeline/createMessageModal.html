@@ -49,10 +49,15 @@
       <img ng-repeat="attachment in vm.post.attachments" class="feed-photo"
            ng-src="attachment/{{ attachment}}">
     </row>
-    <div ngf-drop="vm.upload($files)" ngf-select="vm.upload($files)" ng-model="files" class="drop-box col-sm-offset-2 col-md-offset-0"
+<!--     <div ngf-drop="vm.upload($files)" ngf-select="vm.upload($files)" ng-model="files" class="drop-box col-sm-offset-2 col-md-offset-0"
          ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="false"
          accept="image/*"
-         ngf-pattern="image/*">Drop image here or click to upload</div>
+         ngf-pattern="image/*">Drop image here or click to upload</div> -->
+    
+    <div ngf-drop ngf-select ng-model="files" class="drop-box  col-sm-offset-2 col-md-offset-0" 
+        ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+        accept="image/*,application/pdf" 
+        ngf-pattern="'image/*,application/pdf'">Drop pdfs or images here or click to upload</div>
     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
   </div>
   <div class="modal-footer">
