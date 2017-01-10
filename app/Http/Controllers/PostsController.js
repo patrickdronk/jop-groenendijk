@@ -78,6 +78,13 @@ class PostsController {
   * update(request, response) {
     let post = yield Post.find(request.param('id'));
     const user = yield request.auth.getUser();
+
+    // see if the user can update the post
+    if(user.id !== post.user_id)
+    {
+      return response.unauthorized('Not your post bud');
+    }
+
     let title = request.input('title');
     let content = request.input('content');
     let publicState = request.input('public') === null ? 0 : 1;

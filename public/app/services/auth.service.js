@@ -18,6 +18,7 @@ function authservice($http, $localStorage) {
     function loginSucces(response) {
       $http.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
       $localStorage.token = response.data.token;
+      setCurrentUser();
       return true;
     }
 
@@ -39,5 +40,11 @@ function authservice($http, $localStorage) {
     function registerFailed(error) {
       console.log('XHR Failed for register.' + error.data);
     }
+  }
+
+  function setCurrentUser() {
+    $http.get('users').then(function(response) {
+      $localStorage.currentUser = response.data;
+    })
   }
 }

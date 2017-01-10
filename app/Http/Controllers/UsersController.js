@@ -5,6 +5,11 @@ const User = use('App/Model/User');
 
 class UsersController {
 
+  * index (request, response) {
+    const user = yield request.auth.getUser();
+    yield response.json(user);
+  }
+
   * login (request, response) {
     const email = request.input('email');
     const password = request.input('password');

@@ -4,11 +4,12 @@ angular
   .module('timeline')
   .controller('TimelineController', TimelineController);
 
-TimelineController.$inject = ['$uibModal', '$http', 'Lightbox'];
+TimelineController.$inject = ['$uibModal', '$http', 'Lightbox', '$localStorage'];
 
-function TimelineController($uibModal, $http, Lightbox) {
+function TimelineController($uibModal, $http, Lightbox, $localStorage) {
 
   var vm = this;
+  vm.currentUser = $localStorage.currentUser;
   vm.posts = [];
 
   function activate() {
