@@ -43,16 +43,4 @@ function EditMessageModalController($uibModalInstance, $http, toasty, Upload, po
     });
   };
 
-  // vm.mutate = function(post) {
-  //   console.log(post)
-  //   let newAttachments = [];
-  //   for (let i = 0; i < post.attachments.length; i++) {
-  //     newAttachments = post.attachments[i].location;
-  //   }
-  //   post.attachments = newAttachments;
-  //   return post;
-  // };
-
-  // vm.post = vm.mutate(post);
-
 }

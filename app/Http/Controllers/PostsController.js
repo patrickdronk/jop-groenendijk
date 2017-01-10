@@ -77,17 +77,18 @@ class PostsController {
    */
   * update(request, response) {
     let post = yield Post.find(request.param('id'));
+    const user = yield request.auth.getUser();
     let title = request.input('title');
     let content = request.input('content');
     let publicState = request.input('public') === null ? 0 : 1;
-    // let attachments = request.input('attachments');
+    let attachments = request.input('attachments');
 
-    // let newAttachments = [];
-    // for (var i = 0, len = attachments.length; i < len; i++) {
-    //   const attachment = new Attachment();
-    //   attachment.location = attachments[i];
-    //   newAttachments.push(attachment);
-    // }
+    let newAttachments = [];
+    for (var i = 0, len = attachments.length; i < len; i++) {
+      const attachment = new Attachment();
+      attachment.location = attachments[i];
+      newAttachments.push(attachment);
+    }
 
     post.fill({
       title: title,
@@ -95,7 +96,10 @@ class PostsController {
       public: publicState
     });
 
-    yield post.save();
+    yield user.posts().save(post);
+    try {
+      yield post.attachments().saveMany(newAttachments);
+    } catch (error) {}
     response.ok();
   }
 

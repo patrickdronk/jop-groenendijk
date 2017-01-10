@@ -49,14 +49,19 @@
       <img ng-repeat="attachment in vm.post.attachments" class="feed-photo"
            ng-src="attachment/{{attachment.location === undefined ? attachment : attachment.location }}" data-test="{{attachment}}">
     </row>
-    <div ngf-drop="vm.upload($files)" ngf-select="vm.upload($files)" ng-model="files" class="drop-box col-sm-offset-2 col-md-offset-0"
-         ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"
-         accept="image/*"
-         ngf-pattern="'image/*'">Drop image here or click to upload</div>
-    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    <div class="col-lg-offset-2">
+      <button class="btn btn-blue" type="file" ngf-select="vm.upload($file)"
+              accept="image/*">
+        Select File</button>
+    </div>
+    <!--<div ngf-drop="vm.upload($files)" ngf-select="vm.upload($files)" ng-model="files" class="drop-box col-sm-offset-2 col-md-offset-0"-->
+         <!--ngf-drag-over-class="'dragover'" ngf-multiple="false" ngf-allow-dir="false"-->
+         <!--accept="image/*"-->
+         <!--ngf-pattern="'image/*'">Drop image here or click to upload</div>-->
+    <!--<div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>-->
   </div>
   <div class="modal-footer">
-    <button class="btn btn-blue" type="button" ng-click="vm.ok()">OK</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
     <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
   </div>
 </form>
