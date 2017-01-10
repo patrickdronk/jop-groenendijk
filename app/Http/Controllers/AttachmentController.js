@@ -24,7 +24,7 @@ class AttachmentController {
 
     const attachment = request.file('files', {
       maxSize: '10mb',
-      allowedExtensions: ['jpg', 'png', 'jpeg']
+      allowedExtensions: ['jpg', 'png', 'jpeg', 'JPG']
     });
 
     const fileName = uuid.v4();
