@@ -2,6 +2,8 @@
 
 var uuid = require('uuid');
 const Helpers = use('Helpers');
+const Attachment = use ('App/Model/Attachment');
+
 
 class AttachmentController {
 
@@ -34,6 +36,8 @@ class AttachmentController {
       response.badRequest(attachment.errors());
       return;
     }
+
+
     response.ok(fileName + '.' + attachment.extension());
   }
 }

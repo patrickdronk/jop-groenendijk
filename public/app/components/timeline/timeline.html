@@ -6,6 +6,12 @@
     margin-right: 10px;
     margin-bottom: 10px;
   }
+
+  .timeline-title span
+  {
+    cursor: pointer;
+    font-size: 16px;
+  }
 </style>
 
 <div class="wrapper wrapper-content">
@@ -24,10 +30,15 @@
         <h3 ng-if="vm.posts.length <= 0" class="text-center">Start your timeline with Jop by posting a new message :)</h3>
         <ul ng-if="vm.posts.length > 0" class="timeline">
           <li ng-repeat="post in vm.posts | reverse" ng-class="$even ? 'timeline-panel' : 'timeline-inverted'">
-            <div class="timeline-badge" uib-tooltip="{{ post.user.fullName }}" style="background-color: {{vm.stringToColour('CVDW')}}"><p>{{ vm.fullNameToAbbreviation(post.user.fullName) }}</p></div>
+            <div class="timeline-badge" uib-tooltip="{{ post.user.fullName }}" style="background-color: {{vm.stringToColour(post.user.fullName)}}"><p>{{ vm.fullNameToAbbreviation(post.user.fullName) }}</p></div>
             <div class="timeline-panel">
               <div class="timeline-heading">
-                <h4 class="timeline-title">{{ post.title }}</h4>
+                <h4 class="timeline-title">{{ post.title }}
+                  <span class="pull-right">
+                    <a ng-click="vm.editMessage(post)"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                  </span>
+                </h4>
                 <p>
                   <small class="text-muted"><i class="glyphicon glyphicon-time"></i> <span
                     am-time-ago="post.created_at"></span></small>
@@ -39,8 +50,6 @@
                     <a ng-repeat="attachment in post.attachments" ng-click="vm.openLightboxModal(post, $index)">
                       <img ng-src="attachment/{{ attachment.location }}" class="feed-photo">
                     </a>
-                <!--<img ng-repeat="attachment in post.attachments" class="feed-photo"-->
-                     <!--ng-src="attachment/{{ attachment.location }}">-->
               </div>
             </div>
           </li>

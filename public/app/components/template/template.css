@@ -71,7 +71,7 @@
 }
 .timeline > li.timeline-inverted + li:not(.timeline-inverted),
 .timeline > li:not(.timeline-inverted) + li.timeline-inverted {
-    margin-top: -60px;
+    margin-top: -80px;
 }
 
 .timeline > li:not(.timeline-inverted) {

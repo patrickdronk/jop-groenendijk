@@ -13,9 +13,6 @@ function TimelineController($uibModal, $http, Lightbox) {
 
   function activate() {
     vm.getMessages();
-    // userService.getAuthenticatedUser().then(function(result) {
-    //     vm.currentUser = result.data;
-    // })
   }
 
   vm.getMessages = function () {
@@ -34,6 +31,20 @@ function TimelineController($uibModal, $http, Lightbox) {
 
     modalInstance.result.then(function (newMessage) {
       vm.posts.push(newMessage);
+    });
+  };
+
+  vm.editMessage = function(post) {
+    var modalInstance = $uibModal.open({
+      templateUrl: 'app/components/timeline/editMessage/editMessageModal.html',
+      size: 'lg',
+      controller: 'EditMessageModalController',
+      controllerAs: 'vm',
+      resolve: {
+        post: function () {
+          return post;
+        }
+    },
     });
   };
 

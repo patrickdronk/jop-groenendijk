@@ -100,3 +100,7 @@ body {
 .__footer li a:hover {
   opacity: 1;
 }
+
+.dropdown-menu > li > a {
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
