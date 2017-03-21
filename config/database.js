@@ -51,7 +51,8 @@ module.exports = {
       host: Env.get('DB_HOST', 'localhost'),
       user: Env.get('DB_USER', 'root'),
       password: Env.get('DB_PASSWORD', ''),
-      database: Env.get('DB_DATABASE', 'adonis')
+      database: Env.get('DB_DATABASE', 'adonis'),
+      charset: 'utf8mb4'
     }
   },
 
